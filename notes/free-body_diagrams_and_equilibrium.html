@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free-Body Diagrams and Equilibrium - GATE Mechanical Notes</title>
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <button id="dark-mode-toggle">Enable Dark Mode</button>
+    <header class="site-header">
+        <h1>GATE Mechanical Preparation Notes</h1>
+        <nav>
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="thermodynamics.html">Thermodynamics</a></li>
+                <li><a href="strength_of_materials.html">Strength of Materials</a></li>
+                <li><a href="heat_transfer.html">Heat Transfer</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article>
+            <h2>Free-Body Diagrams and Equilibrium</h2>
+
+            <h3>Introduction to Free-Body Diagrams (FBD)</h3>
+            <p>A <strong>Free-Body Diagram (FBD)</strong> is a simplified representation of a body or a system of bodies, isolated from its surroundings, showing all the external forces, moments, and support reactions acting on it. The FBD is the most important step in the analysis of statics problems.</p>
+            <h4>Steps to Draw a Free-Body Diagram:</h4>
+            <ol>
+                <li><strong>Isolate the Body:</strong> Clearly define and isolate the body or system of interest from all other bodies.</li>
+                <li><strong>Show All External Forces:</strong> Identify and draw all external forces acting on the body. These can include:
+                    <ul>
+                        <li>Applied loads (e.g., point loads, distributed loads)</li>
+                        <li>Support reactions (e.g., normal forces, friction forces, tension in cables)</li>
+                        <li>Gravitational force (weight) acting at the center of gravity</li>
+                    </ul>
+                </li>
+                <li><strong>Indicate Dimensions and Angles:</strong> Label all necessary dimensions and angles on the diagram.</li>
+                <li><strong>Establish a Coordinate System:</strong> Choose a suitable coordinate system (e.g., Cartesian x-y) to resolve the forces into components.</li>
+            </ol>
+            <hr>
+            <h3>Equilibrium of a Rigid Body</h3>
+            <p>A rigid body is in <strong>static equilibrium</strong> if it is not translating or rotating. This means that the net force and the net moment acting on the body are both zero. According to Newton's First Law, the body will remain at rest or in uniform motion in a straight line.</p>
+            <h4>Conditions for 2D Equilibrium:</h4>
+            <p>For a body in a 2D (coplanar) force system, the necessary and sufficient conditions for equilibrium are given by the following scalar equations:</p>
+            <p class="formula-block">
+                &Sigma;F<sub>x</sub> = 0 &nbsp;&nbsp;&nbsp; (Sum of horizontal forces is zero)
+            </p>
+            <p class="formula-block">
+                &Sigma;F<sub>y</sub> = 0 &nbsp;&nbsp;&nbsp; (Sum of vertical forces is zero)
+            </p>
+            <p class="formula-block">
+                &Sigma;M<sub>O</sub> = 0 &nbsp;&nbsp;&nbsp; (Sum of moments about any point O is zero)
+            </p>
+            <hr>
+            <h3>Lami's Theorem</h3>
+            <p><strong>Lami's Theorem</strong> states that if three coplanar, concurrent, and non-collinear forces are in equilibrium, then each force is proportional to the sine of the angle between the other two forces.</p>
+            <p>Consider three forces F<sub>A</sub>, F<sub>B</sub>, and F<sub>C</sub> in equilibrium, with angles &alpha;, &beta;, and &gamma; opposite to them respectively:</p>
+            <p class="formula-block">
+                F<sub>A</sub> / sin(&alpha;) = F<sub>B</sub> / sin(&beta;) = F<sub>C</sub> / sin(&gamma;)
+            </p>
+            <p>This theorem is a very useful tool for solving problems involving three concurrent forces in equilibrium, often found in truss and cable problems.</p>
+            <img src="../images/lamis_theorem.png" alt="Lami's Theorem Diagram" class="content-image">
+        </article>
+    </main>
+    <footer>
+        <p>© 2025 Your Name - GATE Mechanical Preparation</p>
+    </footer>
+
+    <script>
+        const toggleButton = document.getElementById('dark-mode-toggle');
+        const body = document.body;
+
+        // Check for saved theme preference in local storage
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark') {
+            body.classList.add('dark-mode');
+            toggleButton.textContent = 'Disable Dark Mode';
+        }
+
+        // Toggle dark mode on click
+        toggleButton.addEventListener('click', () => {
+            if (body.classList.contains('dark-mode')) {
+                body.classList.remove('dark-mode');
+                localStorage.setItem('theme', 'light');
+                toggleButton.textContent = 'Enable Dark Mode';
+            } else {
+                body.classList.add('dark-mode');
+                localStorage.setItem('theme', 'dark');
+                toggleButton.textContent = 'Disable Dark Mode';
+            }
+        });
+    </script>
+</body>
+</html>

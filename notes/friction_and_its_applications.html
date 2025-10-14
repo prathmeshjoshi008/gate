@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Friction and Its Applications - GATE Mechanical Notes</title>
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <button id="dark-mode-toggle">Enable Dark Mode</button>
+    <header class="site-header">
+        <h1>GATE Mechanical Preparation Notes</h1>
+        <nav>
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="thermodynamics.html">Thermodynamics</a></li>
+                <li><a href="strength_of_materials.html">Strength of Materials</a></li>
+                <li><a href="heat_transfer.html">Heat Transfer</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article>
+            <h2>Friction and Its Applications</h2>
+
+            <h3>Introduction to Friction</h3>
+            <p><strong>Friction</strong> is a force that resists the relative motion or tendency of such motion between two surfaces in contact. It is a complex phenomenon that depends on the nature of the surfaces, the normal force pressing them together, and whether the surfaces are at rest or in motion relative to each other.</p>
+            
+            <h4>Types of Dry Friction:</h4>
+            <ul>
+                <li><strong>Static Friction (F<sub>s</sub>):</strong> The friction force that acts on a body when it is at rest. It is a self-adjusting force, with a maximum value given by F<sub>s,max</sub> = &mu;<sub>s</sub>N, where &mu;<sub>s</sub> is the coefficient of static friction and N is the normal force.</li>
+                <li><strong>Kinetic Friction (F<sub>k</sub>):</strong> The friction force that acts on a body when it is in motion. It is generally constant and given by F<sub>k</sub> = &mu;<sub>k</sub>N, where &mu;<sub>k</sub> is the coefficient of kinetic friction. Typically, &mu;<sub>k</sub> is less than &mu;<sub>s</sub>.</li>
+            </ul>
+
+            <hr>
+
+            <h3>Laws of Dry Friction (Coulomb's Laws)</h3>
+            <p>The fundamental principles of dry friction are summarized by Coulomb's laws:</p>
+            <ol>
+                <li>The friction force is proportional to the normal force.</li>
+                <li>The friction force is independent of the apparent area of contact.</li>
+                <li>The coefficient of kinetic friction is independent of the relative velocity of the surfaces (this is an approximation, but widely used in engineering problems).</li>
+            </ol>
+            <p class="formula-block">
+                F<sub>friction</sub> &le; &mu;<sub>s</sub>N &nbsp;&nbsp;&nbsp; (Static Condition)
+            </p>
+            <p class="formula-block">
+                F<sub>friction</sub> = &mu;<sub>k</sub>N &nbsp;&nbsp;&nbsp; (Kinetic Condition)
+            </p>
+
+            <hr>
+
+            <h3>Applications of Friction</h3>
+            <p>Friction plays a crucial role in many mechanical systems. Understanding its principles is essential for analyzing and designing various components.</p>
+            <h4>Wedges:</h4>
+            <p>A <strong>wedge</strong> is a simple machine, often triangular in shape, used to separate two objects or portions of an object, lift up an object, or hold an object in place. The analysis involves applying equilibrium equations to the wedge and the object it is acting on, considering the friction forces at all contact surfaces.</p>
+            
+            <h4>Screws (Power Screws):</h4>
+            <p>A <strong>power screw</strong> is a device used to change angular motion into linear motion and, usually, to transmit power. The analysis of a power screw is similar to that of a block on an inclined plane, where the helix angle of the thread acts as the angle of inclination. The torque required to raise or lower a load depends on the lead of the screw, the mean radius, and the coefficient of friction.</p>
+
+            <h4>Belt-Pulley Systems:</h4>
+            <p>In belt drives, friction between the belt and the pulley is essential for transmitting power. The relationship between the tight side tension (T<sub>1</sub>) and the slack side tension (T<sub>2</sub>) is given by the belt friction equation:</p>
+            <p class="formula-block">
+                T<sub>1</sub> / T<sub>2</sub> = e<sup>(&mu;&theta;)</sup>
+            </p>
+            <p>Where &mu; is the coefficient of friction and &theta; is the angle of wrap of the belt on the pulley (in radians).</p>
+            
+            <h4>Clutches and Brakes:</h4>
+            <p><strong>Clutches</strong> and <strong>brakes</strong> use friction to control the transmission of power. In a disc clutch or brake, friction between rotating and stationary discs is used to engage or disengage the power transmission or to slow down a rotating shaft. The torque capacity is a function of the actuating force, the coefficient of friction, and the geometry of the friction surfaces.</p>
+
+            <img src="../images/friction_applications.png" alt="Applications of Friction" class="content-image">
+        </article>
+    </main>
+    <footer>
+        <p>© 2025 Your Name - GATE Mechanical Preparation</p>
+    </footer>
+
+    <script>
+        const toggleButton = document.getElementById('dark-mode-toggle');
+        const body = document.body;
+
+        // Check for saved theme preference in local storage
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark') {
+            body.classList.add('dark-mode');
+            toggleButton.textContent = 'Disable Dark Mode';
+        }
+
+        // Toggle dark mode on click
+        toggleButton.addEventListener('click', () => {
+            if (body.classList.contains('dark-mode')) {
+                body.classList.remove('dark-mode');
+                localStorage.setItem('theme', 'light');
+                toggleButton.textContent = 'Enable Dark Mode';
+            } else {
+                body.classList.add('dark-mode');
+                localStorage.setItem('theme', 'dark');
+                toggleButton.textContent = 'Disable Dark Mode';
+            }
+        });
+    </script>
+</body>
+</html>
