@@ -5,6 +5,69 @@ body {
     background-color: #f4f4f4;
     color: #333;
 }
+
+.container {
+    display: flex;
+}
+
+.sidebar {
+    width: 250px;
+    background-color: #004c70;
+    color: white;
+    padding: 20px;
+    height: 100vh;
+    position: fixed;
+    overflow-y: auto;
+}
+
+.sidebar h3 {
+    color: #a7c0cd;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    font-size: 1.1em;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.sidebar > nav > ul > li {
+    margin-bottom: 10px;
+}
+
+.sidebar ul li a {
+    color: white;
+    text-decoration: none;
+    display: block;
+    padding: 8px 10px;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+    font-weight: bold;
+}
+
+.sidebar ul li a:hover {
+    background-color: #005a87;
+}
+
+.sidebar .sub-topics {
+    list-style: none;
+    padding-left: 20px;
+    margin-top: 5px;
+}
+
+.sidebar .sub-topics li a {
+    font-weight: normal;
+    font-size: 0.9em;
+    padding: 6px 10px;
+}
+
+
+.main-content {
+    margin-left: 270px; /* Sidebar width + some padding */
+    flex-grow: 1;
+}
+
 .site-header {
     background-color: #005a87;
     color: white;
@@ -69,6 +132,19 @@ footer {
     background-color: #121212;
     color: #e0e0e0;
 }
+
+.dark-mode .sidebar {
+    background-color: #002233;
+}
+
+.dark-mode .sidebar h3 {
+    color: #88a1b0;
+}
+
+.dark-mode .sidebar ul li a:hover {
+    background-color: #00334a;
+}
+
 .dark-mode .site-header {
     background-color: #00334a; /* Darker blue */
 }
