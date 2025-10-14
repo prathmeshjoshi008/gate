@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,6 +7,7 @@
     <link rel="stylesheet" href="../styles.css">
 </head>
 <body>
+    <button id="dark-mode-toggle">Enable Dark Mode</button>
     <header class="site-header">
         <h1>GATE Mechanical Preparation Notes</h1>
         <nav>
@@ -22,15 +22,80 @@
     <main>
         <article>
             <h2>Thermodynamics</h2>
-            <h3>First Law of Thermodynamics</h3>
-            <p>The First Law states that energy in a closed system is conserved. It can be written as &Delta;E = Q - W.</p>
+
+            <h3>Zeroth Law of Thermodynamics</h3>
+            <p>If two thermodynamic systems are each in thermal equilibrium with a third system, then they are in thermal equilibrium with each other. This law justifies the use of a **thermometer** to measure temperature.</p>
+
+            <hr>
+
+            <h3>First Law of Thermodynamics (Energy Conservation)</h3>
+            <p>The First Law states that **energy** in a closed system is conserved. It relates the change in internal energy ($\Delta E$) to the heat transfer ($Q$) and work ($W$).</p>
+            <p class="formula-block">
+                &Delta;E = Q &minus; W
+            </p>
+            <p>
+                *Note: This sign convention uses Q as heat added *to* the system and W as work done *by* the system.*
+            </p>
+
+            <h3>Enthalpy and Specific Heat</h3>
+            <p><strong>Enthalpy (H)</strong> is defined as H = U + PV, where U is the internal energy, P is pressure, and V is volume. It represents the total heat content of a system.</p>
+            <p>
+                The **specific heat at constant pressure ($c_p$)** and the **specific heat at constant volume ($c_v$)** are related for an ideal gas:
+            </p>
+            <p class="formula-block">
+                c<sub>p</sub> &minus; c<sub>v</sub> = R &nbsp;&nbsp;&nbsp; (Mayer's Relation)
+            </p>
+            <p class="formula-block">
+                &gamma; = c<sub>p</sub> / c<sub>v</sub> &nbsp;&nbsp;&nbsp; (Adiabatic Index or Ratio of Specific Heats)
+            </p>
+
+            <hr>
+
             <h3>Second Law of Thermodynamics</h3>
-            <p>Heat cannot spontaneously flow from a colder body to a hotter body. Entropy always increases in an isolated system.</p>
+            <p>Heat cannot spontaneously flow from a colder body to a hotter body (**Clausius Statement**). Entropy always increases in an isolated system. The **Kelvin-Planck Statement** says it's impossible to construct an engine operating in a cycle that produces no effect other than the extraction of heat from a reservoir and the performance of an equal amount of work.</p>
+
+            <h3>The Carnot Cycle and Efficiency</h3>
+            <p>The **Carnot cycle** is the most efficient possible cycle for converting heat into work. The efficiency ($\eta$) of a reversible engine operating between two absolute temperatures ($T_H$ and $T_L$) is:</p>
+            <p class="formula-block">
+                &eta;<sub>Carnot</sub> = 1 &minus; (T<sub>L</sub> / T<sub>H</sub>)
+            </p>
+            <p>
+                Where T<sub>L</sub> is the absolute temperature of the cold reservoir and T<sub>H</sub> is the absolute temperature of the hot reservoir.
+            </p>
+
+            <h3>Third Law of Thermodynamics</h3>
+            <p>The entropy of a perfect crystal at absolute zero temperature (0 Kelvin) is exactly zero. This law provides a datum for the determination of entropy.</p>
+
             <img src="../images/thermodynamics_diagram.png" alt="Thermodynamics Diagram" class="content-image">
         </article>
     </main>
     <footer>
         <p>© 2025 Your Name - GATE Mechanical Preparation</p>
     </footer>
+
+    <script>
+        const toggleButton = document.getElementById('dark-mode-toggle');
+        const body = document.body;
+
+        // Check for saved theme preference in local storage
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark') {
+            body.classList.add('dark-mode');
+            toggleButton.textContent = 'Disable Dark Mode';
+        }
+
+        // Toggle dark mode on click
+        toggleButton.addEventListener('click', () => {
+            if (body.classList.contains('dark-mode')) {
+                body.classList.remove('dark-mode');
+                localStorage.setItem('theme', 'light');
+                toggleButton.textContent = 'Enable Dark Mode';
+            } else {
+                body.classList.add('dark-mode');
+                localStorage.setItem('theme', 'dark');
+                toggleButton.textContent = 'Disable Dark Mode';
+            }
+        });
+    </script>
 </body>
 </html>
