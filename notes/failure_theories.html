@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Theories of Failure - GATE Mechanical Notes</title>
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <button id="dark-mode-toggle">Enable Dark Mode</button>
+    <header class="site-header">
+        <h1>GATE Mechanical Preparation Notes</h1>
+        <nav>
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="thermodynamics.html">Thermodynamics</a></li>
+                <li><a href="strength_of_materials.html">Strength of Materials</a></li>
+                <li><a href="heat_transfer.html">Heat Transfer</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article>
+            <h2>Theories of Failure</h2>
+            <p>
+                When a mechanical component is subjected to complex loading (like combined bending, torsion, and axial loads), a multi-axial state of stress exists. <strong>Theories of Failure</strong> are used to predict the failure of a material under such conditions by comparing the complex stress state to the material's strength properties, which are typically determined from a simple uniaxial tensile test.
+            </p>
+            <p>
+                For design purposes, a <strong>Factor of Safety (F.S.)</strong> is introduced to ensure that the component operates well below its failure point.
+            </p>
+            
+            <hr>
+
+            <h3>1. Maximum Principal Stress Theory (Rankine's Theory)</h3>
+            <p>
+                This theory is primarily recommended for <strong>brittle materials</strong>.
+            </p>
+            <p>
+                <strong>Principle:</strong> Failure occurs when the maximum principal stress (&sigma;<sub>1</sub>) at any point in the component reaches the ultimate strength (&sigma;<sub>u</sub>) of the material. For ductile materials, failure is considered as yielding, so the yield strength (&sigma;<sub>y</sub>) is used instead.
+            </p>
+            <p class="formula-block">
+                &sigma;<sub>1</sub> &le; &sigma;<sub>allowable</sub> = &sigma;<sub>yield</sub> / F.S.
+            </p>
+            <ul>
+                <li><strong>&sigma;<sub>1</sub></strong>: Maximum Principal Stress in the component.</li>
+                <li><strong>&sigma;<sub>yield</sub></strong>: Yield strength of the material from a uniaxial test.</li>
+                <li><strong>F.S.</strong>: Factor of Safety.</li>
+            </ul>
+            <p><em>This theory does not consider the effect of other principal stresses and is not safe for ductile materials, especially under pure shear.</em></p>
+            
+            <hr>
+
+            <h3>2. Maximum Shear Stress Theory (Tresca or Guest's Theory)</h3>
+            <p>
+                This theory is recommended for <strong>ductile materials</strong> and gives conservative (safer) results.
+            </p>
+            <p>
+                <strong>Principle:</strong> Yielding in a component occurs when the maximum shear stress (&tau;<sub>max</sub>) at any point reaches the maximum shear stress at the yield point in a simple tension test. The maximum shear stress at yield in a tension test is &sigma;<sub>y</sub> / 2.
+            </p>
+            <p class="formula-block">
+                &tau;<sub>max</sub> = (&sigma;<sub>1</sub> - &sigma;<sub>3</sub>) / 2 &le; &sigma;<sub>y</sub> / (2 * F.S.)
+            </p>
+            <p>This simplifies to:</p>
+            <p class="formula-block">
+                &sigma;<sub>1</sub> - &sigma;<sub>3</sub> &le; &sigma;<sub>y</sub> / F.S.
+            </p>
+            <ul>
+                <li><strong>&tau;<sub>max</sub></strong>: Absolute maximum shear stress in the component.</li>
+                <li><strong>&sigma;<sub>1</sub>, &sigma;<sub>3</sub></strong>: Maximum and Minimum Principal Stresses, respectively.</li>
+                <li><strong>&sigma;<sub>y</sub></strong>: Yield strength of the material.</li>
+                <li><strong>F.S.</strong>: Factor of Safety.</li>
+            </ul>
+
+            <hr>
+            
+            <h3>3. Maximum Distortion Energy Theory (Von Mises-Hencky Theory)</h3>
+            <p>
+                This is the most widely accepted theory for <strong>ductile materials</strong> as its results are in best agreement with experimental tests.
+            </p>
+            <p>
+                <strong>Principle:</strong> Failure by yielding occurs when the distortion strain energy per unit volume at a point in the component equals the distortion strain energy per unit volume at the yield point in a simple tension test.
+            </p>
+            <p>The theory is based on a "Von Mises Stress" (&sigma;<sub>v</sub>), which is a single equivalent stress value for the complex stress state.</p>
+            <p class="formula-block">
+                &sigma;<sub>v</sub> = &sqrt;[ ( (&sigma;<sub>1</sub> - &sigma;<sub>2</sub>)<sup>2</sup> + (&sigma;<sub>2</sub> - &sigma;<sub>3</sub>)<sup>2</sup> + (&sigma;<sub>3</sub> - &sigma;<sub>1</sub>)<sup>2</sup> ) / 2 ] &le; &sigma;<sub>y</sub> / F.S.
+            </p>
+            <p>For a 2D state of stress (&sigma;<sub>3</sub> = 0):</p>
+             <p class="formula-block">
+                &sigma;<sub>v</sub> = &sqrt;(&sigma;<sub>1</sub><sup>2</sup> - &sigma;<sub>1</sub>&sigma;<sub>2</sub> + &sigma;<sub>2</sub><sup>2</sup>) &le; &sigma;<sub>y</sub> / F.S.
+            </p>
+            <ul>
+                <li><strong>&sigma;<sub>v</sub></strong>: Von Mises equivalent stress.</li>
+                <li><strong>&sigma;<sub>1</sub>, &sigma;<sub>2</sub>, &sigma;<sub>3</sub></strong>: The three principal stresses.</li>
+                <li><strong>&sigma;<sub>y</sub></strong>: Yield strength of the material.</li>
+                <li><strong>F.S.</strong>: Factor of Safety.</li>
+            </ul>
+            
+            <hr>
+
+            <h3>4. Maximum Principal Strain Theory (Saint-Venant's Theory)</h3>
+            <p>
+                This theory gives reliable results for <strong>brittle materials</strong>, especially under tensile loading.
+            </p>
+            <p>
+                <strong>Principle:</strong> Failure occurs when the maximum principal strain (&epsilon;<sub>1</sub>) at a point in the component reaches the strain at the yield point in a simple tension test. The yield point strain is &sigma;<sub>y</sub> / E.
+            </p>
+            <p>From the generalized Hooke's Law, the maximum principal strain is given by:</p>
+             <p class="formula-block">
+                &epsilon;<sub>1</sub> = (1/E) * [&sigma;<sub>1</sub> - &nu;(&sigma;<sub>2</sub> + &sigma;<sub>3</sub>)]
+            </p>
+            <p>According to the theory, for no failure:</p>
+            <p class="formula-block">
+                (1/E) * [&sigma;<sub>1</sub> - &nu;(&sigma;<sub>2</sub> + &sigma;<sub>3</sub>)] &le; (&sigma;<sub>y</sub> / E) / F.S.
+            </p>
+            <p>This simplifies to:</p>
+            <p class="formula-block">
+                &sigma;<sub>1</sub> - &nu;(&sigma;<sub>2</sub> + &sigma;<sub>3</sub>) &le; &sigma;<sub>y</sub> / F.S.
+            </p>
+            <ul>
+                <li><strong>&epsilon;<sub>1</sub></strong>: Maximum Principal Strain.</li>
+                <li><strong>E</strong>: Young's Modulus of the material.</li>
+                <li><strong>&nu; (mu)</strong>: Poisson's Ratio of the material.</li>
+                <li><strong>&sigma;<sub>1</sub>, &sigma;<sub>2</sub>, &sigma;<sub>3</sub></strong>: The three principal stresses.</li>
+                <li><strong>&sigma;<sub>y</sub></strong>: Yield strength of the material.</li>
+            </ul>
+
+            <hr>
+
+            <h3>5. Total Strain Energy Theory (Haigh's Theory)</h3>
+            <p>
+                This theory is applicable to <strong>ductile materials</strong> but is not preferred over the Von Mises theory as it can be unsafe in cases of hydrostatic pressure.
+            </p>
+            <p>
+                <strong>Principle:</strong> Failure occurs when the total strain energy per unit volume at a point in the component equals the total strain energy per unit volume at the yield point in a simple tension test.
+            </p>
+            <p>Total strain energy per unit volume (U) in a 3D stress system is:</p>
+            <p class="formula-block">
+                U = (1 / 2E) * [&sigma;<sub>1</sub><sup>2</sup> + &sigma;<sub>2</sub><sup>2</sup> + &sigma;<sub>3</sub><sup>2</sup> - 2&nu;(&sigma;<sub>1</sub>&sigma;<sub>2</sub> + &sigma;<sub>2</sub>&sigma;<sub>3</sub> + &sigma;<sub>3</sub>&sigma;<sub>1</sub>)]
+            </p>
+            <p>At the yield point in a simple tension test, U<sub>yield</sub> = &sigma;<sub>y</sub><sup>2</sup> / 2E. For no failure:</p>
+            <p class="formula-block">
+                &sigma;<sub>1</sub><sup>2</sup> + &sigma;<sub>2</sub><sup>2</sup> + &sigma;<sub>3</sub><sup>2</sup> - 2&nu;(&sigma;<sub>1</sub>&sigma;<sub>2</sub> + &sigma;<sub>2</sub>&sigma;<sub>3</sub> + &sigma;<sub>3</sub>&sigma;<sub>1</sub>) &le; (&sigma;<sub>y</sub> / F.S.)<sup>2</sup>
+            </p>
+            <ul>
+                <li><strong>U</strong>: Total strain energy per unit volume.</li>
+                <li><strong>E, &nu;</strong>: Young's Modulus and Poisson's Ratio.</li>
+                <li><strong>&sigma;<sub>1</sub>, &sigma;<sub>2</sub>, &sigma;<sub>3</sub></strong>: The three principal stresses.</li>
+            </ul>
+
+            <img src="../images/failure_theories_comparison.png" alt="Comparison of Failure Theory Safe Zones" class="content-image">
+        </article>
+    </main>
+    <footer>
+        <p>© 2025 Your Name - GATE Mechanical Preparation</p>
+    </footer>
+
+    <script>
+        const toggleButton = document.getElementById('dark-mode-toggle');
+        const body = document.body;
+
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark') {
+            body.classList.add('dark-mode');
+            toggleButton.textContent = 'Disable Dark Mode';
+        }
+
+        toggleButton.addEventListener('click', () => {
+            if (body.classList.contains('dark-mode')) {
+                body.classList.remove('dark-mode');
+                localStorage.setItem('theme', 'light');
+                toggleButton.textContent = 'Enable Dark Mode';
+            } else {
+                body.classList.add('dark-mode');
+                localStorage.setItem('theme', 'dark');
+                toggleButton.textContent = 'Disable Dark Mode';
+            }
+        });
+    </script>
+</body>
+</html>
