@@ -3,99 +3,349 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thermodynamics - GATE Mechanical Notes</title>
-    <link rel="stylesheet" href="../styles.css">
+    <title>GATE Mechanical Notes</title>
+    <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
-    <button id="dark-mode-toggle">Enable Dark Mode</button>
-    <header class="site-header">
-        <h1>GATE Mechanical Preparation Notes</h1>
-        <nav>
-            <ul>
-                <li><a href="../index.html">Home</a></li>
-                <li><a href="thermodynamics.html">Thermodynamics</a></li>
-                <li><a href="strength_of_materials.html">Strength of Materials</a></li>
-                <li><a href="heat_transfer.html">Heat Transfer</a></li>
-            </ul>
-        </nav>
-    </header>
-    <main>
-        <article>
-            <h2>Thermodynamics</h2>
-
-            <h3>Zeroth Law of Thermodynamics</h3>
-            <p>If two thermodynamic systems are each in thermal equilibrium with a third system, then they are in thermal equilibrium with each other. This law justifies the use of a **thermometer** to measure temperature.</p>
-
-            <hr>
-
-            <h3>First Law of Thermodynamics (Energy Conservation)</h3>
-            <p>The First Law states that **energy** in a closed system is conserved. It relates the change in internal energy ($\Delta E$) to the heat transfer ($Q$) and work ($W$).</p>
-            <p class="formula-block">
-                &Delta;E = Q &minus; W
-            </p>
-            <p>
-                *Note: This sign convention uses Q as heat added *to* the system and W as work done *by* the system.*
-            </p>
-
-            <h3>Enthalpy and Specific Heat</h3>
-            <p><strong>Enthalpy (H)</strong> is defined as H = U + PV, where U is the internal energy, P is pressure, and V is volume. It represents the total heat content of a system.</p>
-            <p>
-                The **specific heat at constant pressure ($c_p$)** and the **specific heat at constant volume ($c_v$)** are related for an ideal gas:
-            </p>
-            <p class="formula-block">
-                c<sub>p</sub> &minus; c<sub>v</sub> = R &nbsp;&nbsp;&nbsp; (Mayer's Relation)
-            </p>
-            <p class="formula-block">
-                &gamma; = c<sub>p</sub> / c<sub>v</sub> &nbsp;&nbsp;&nbsp; (Adiabatic Index or Ratio of Specific Heats)
-            </p>
-
-            <hr>
-
-            <h3>Second Law of Thermodynamics</h3>
-            <p>Heat cannot spontaneously flow from a colder body to a hotter body (**Clausius Statement**). Entropy always increases in an isolated system. The **Kelvin-Planck Statement** says it's impossible to construct an engine operating in a cycle that produces no effect other than the extraction of heat from a reservoir and the performance of an equal amount of work.</p>
-
-            <h3>The Carnot Cycle and Efficiency</h3>
-            <p>The **Carnot cycle** is the most efficient possible cycle for converting heat into work. The efficiency ($\eta$) of a reversible engine operating between two absolute temperatures ($T_H$ and $T_L$) is:</p>
-            <p class="formula-block">
-                &eta;<sub>Carnot</sub> = 1 &minus; (T<sub>L</sub> / T<sub>H</sub>)
-            </p>
-            <p>
-                Where T<sub>L</sub> is the absolute temperature of the cold reservoir and T<sub>H</sub> is the absolute temperature of the hot reservoir.
-            </p>
-
-            <h3>Third Law of Thermodynamics</h3>
-            <p>The entropy of a perfect crystal at absolute zero temperature (0 Kelvin) is exactly zero. This law provides a datum for the determination of entropy.</p>
-
-            <img src="../images/thermodynamics_diagram.png" alt="Thermodynamics Diagram" class="content-image">
-        </article>
-    </main>
-    <footer>
-        <p>© 2025 Your Name - GATE Mechanical Preparation</p>
-    </footer>
-
-    <script>
-        const toggleButton = document.getElementById('dark-mode-toggle');
-        const body = document.body;
-
-        // Check for saved theme preference in local storage
-        const savedTheme = localStorage.getItem('theme');
-        if (savedTheme === 'dark') {
-            body.classList.add('dark-mode');
-            toggleButton.textContent = 'Disable Dark Mode';
-        }
-
-        // Toggle dark mode on click
-        toggleButton.addEventListener('click', () => {
-            if (body.classList.contains('dark-mode')) {
-                body.classList.remove('dark-mode');
-                localStorage.setItem('theme', 'light');
-                toggleButton.textContent = 'Enable Dark Mode';
-            } else {
-                body.classList.add('dark-mode');
-                localStorage.setItem('theme', 'dark');
-                toggleButton.textContent = 'Disable Dark Mode';
-            }
-        });
-    </script>
+    <div class="container">
+        <aside class="sidebar">
+            <nav>
+                <h3>APTITUDE</h3>
+                <h3>MATH</h3>
+                <ul>
+                    <li>
+                        <a href="/notes/linear_algebra.html">Linear Algebra</a>
+                        <ul class="sub-topics">
+                            <li><a href="/notes/matrix_algebra.html">Matrix algebra</a></li>
+                            <li><a href="/notes/systems_of_linear_equations.html">systems of linear equations</a></li>
+                            <li><a href="/notes/eigen_values_and_eigen_vectors.html">eigen values and eigen vectors</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="/notes/calculus.html">Calculus</a>
+                        <ul class="sub-topics">
+                            <li><a href="/notes/functions_of_single_variable.html">Functions of single variable</a></li>
+                            <li><a href="/notes/limit_continuity_and_differentiability.html">limit, continuity and differentiability</a></li>
+                            <li><a href="/notes/mean_value_theorems.html">mean value theorems</a></li>
+                            <li><a href="/notes/indeterminate_forms.html">indeterminate forms</a></li>
+                            <li><a href="/notes/evaluation_of_definite_and_improper_integrals.html">evaluation of definite and improper integrals</a></li>
+                            <li><a href="/notes/double_and_triple_integrals.html">double and triple integrals</a></li>
+                            <li><a href="/notes/partial_derivatives.html">partial derivatives</a></li>
+                            <li><a href="/notes/total_derivative.html">total derivative</a></li>
+                            <li><a href="/notes/taylor_series.html">Taylor series (in one and two variables)</a></li>
+                            <li><a href="/notes/maxima_and_minima.html">maxima and minima</a></li>
+                            <li><a href="/notes/fourier_series.html">Fourier series</a></li>
+                            <li><a href="/notes/gradient_divergence_and_curl.html">gradient, divergence and curl</a></li>
+                            <li><a href="/notes/vector_identities.html">vector identities</a></li>
+                            <li><a href="/notes/directional_derivatives.html">directional derivatives</a></li>
+                            <li><a href="/notes/line_surface_and_volume_integrals.html">line, surface and volume integrals</a></li>
+                            <li><a href="/notes/applications_of_gauss_stokes_and_greens_theorems.html">applications of Gauss, Stokes and Green's theorems</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="/notes/differential_equations.html">Differential Equations</a>
+                        <ul class="sub-topics">
+                            <li><a href="/notes/first_order_equations.html">First order equations (linear and nonlinear)</a></li>
+                            <li><a href="/notes/higher_order_linear_differential_equations.html">higher order linear differential equations with constant coefficients</a></li>
+                            <li><a href="/notes/euler-cauchy_equation.html">Euler-Cauchy equation</a></li>
+                            <li><a href="/notes/initial_and_boundary_value_problems.html">initial and boundary value problems</a></li>
+                            <li><a href="/notes/laplace_transforms.html">Laplace transforms</a></li>
+                            <li><a href="/notes/solutions_of_heat_wave_and_laplaces_equations.html">solutions of heat, wave and Laplace's equations</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="/notes/complex_variables.html">Complex Variables</a>
+                        <ul class="sub-topics">
+                            <li><a href="/notes/analytic_functions.html">Analytic functions</a></li>
+                            <li><a href="/notes/cauchy-riemann_equations.html">Cauchy-Riemann equations</a></li>
+                            <li><a href="/notes/cauchys_integral_theorem_and_integral_formula.html">Cauchy's integral theorem and integral formula</a></li>
+                            <li><a href="/notes/taylor_and_laurent_series.html">Taylor and Laurent series</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="/notes/probability_and_statistics.html">Probability and Statistics</a>
+                        <ul class="sub-topics">
+                            <li><a href="/notes/definitions_of_probability.html">Definitions of probability</a></li>
+                            <li><a href="/notes/sampling_theorems.html">sampling theorems</a></li>
+                            <li><a href="/notes/conditional_probability.html">conditional probability</a></li>
+                            <li><a href="/notes/mean_median_mode_and_standard_deviation.html">mean, median, mode and standard deviation</a></li>
+                            <li><a href="/notes/random_variables.html">random variables</a></li>
+                            <li><a href="/notes/binomial_distribution.html">binomial distribution</a></li>
+                            <li><a href="/notes/poisson_distribution.html">Poisson distribution</a></li>
+                            <li><a href="/notes/normal_distributions.html">normal distributions</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="/notes/numerical_methods.html">Numerical Methods</a>
+                        <ul class="sub-topics">
+                            <li><a href="/notes/numerical_solutions_of_linear_and_non-linear_algebraic_equations.html">Numerical solutions of linear and non-linear algebraic equations</a></li>
+                            <li><a href="/notes/integration_by_trapezoidal_and_simpsons_rules.html">integration by trapezoidal and Simpson's rules</a></li>
+                            <li><a href="/notes/single_and_multi-step_methods_for_differential_equations.html">single and multi-step methods for differential equations</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <h3>EMD</h3>
+                <ul>
+                    <li>
+                        <a href="/notes/engineering_mechanics.html">Engineering Mechanics</a>
+                        <ul class="sub-topics">
+                            <li><a href="/notes/free-body_diagrams_and_equilibrium.html">Free-body diagrams and equilibrium</a></li>
+                            <li><a href="/notes/friction_and_its_applications.html">friction and its applications</a></li>
+                            <li><a href="/notes/trusses_and_frames.html">trusses and frames</a></li>
+                            <li><a href="/notes/virtual_work.html">virtual work</a></li>
+                            <li><a href="/notes/kinematics_and_dynamics_of_rigid_bodies.html">kinematics and dynamics of rigid bodies in plane motion</a></li>
+                            <li><a href="/notes/impulse_and_momentum.html">impulse and momentum (linear and angular)</a></li>
+                            <li><a href="/notes/energy_formulations.html">energy formulations</a></li>
+                            <li><a href="/notes/lagranges_equation.html">Lagrange's equation</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="/notes/mechanics_of_materials.html">Mechanics of Materials</a>
+                         <ul class="sub-topics">
+                            <li><a href="/notes/stress_and_strain.html">Stress and strain</a></li>
+                            <li><a href="/notes/elastic_constants.html">elastic constants</a></li>
+                            <li><a href="/notes/poissons_ratio.html">Poisson's ratio</a></li>
+                            <li><a href="/notes/mohrs_circle.html">Mohr's circle for plane stress and plane strain</a></li>
+                            <li><a href="/notes/thin_cylinders.html">thin cylinders</a></li>
+                            <li><a href="/notes/shear_force_and_bending_moment_diagrams.html">shear force and bending moment diagrams</a></li>
+                            <li><a href="/notes/bending_and_shear_stresses.html">bending and shear stresses</a></li>
+                            <li><a href="/notes/concept_of_shear_centre.html">concept of shear centre</a></li>
+                            <li><a href="/notes/deflection_of_beams.html">deflection of beams</a></li>
+                            <li><a href="/notes/torsion_of_circular_shafts.html">torsion of circular shafts</a></li>
+                            <li><a href="/notes/eulers_theory_of_columns.html">Euler's theory of columns</a></li>
+                            <li><a href="/notes/energy_methods.html">energy methods</a></li>
+                            <li><a href="/notes/thermal_stresses.html">thermal stresses</a></li>
+                            <li><a href="/notes/strain_gauges_and_rosettes.html">strain gauges and rosettes</a></li>
+                            <li><a href="/notes/testing_of_materials.html">testing of materials with universal testing machine</a></li>
+                            <li><a href="/notes/testing_of_hardness_and_impact_strength.html">testing of hardness and impact strength</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="/notes/theory_of_machines.html">Theory of Machines</a>
+                        <ul class="sub-topics">
+                            <li><a href="/notes/displacement_velocity_and_acceleration_analysis.html">Displacement, velocity and acceleration analysis of plane mechanisms</a></li>
+                            <li><a href="/notes/dynamic_analysis_of_linkages.html">dynamic analysis of linkages</a></li>
+                            <li><a href="/notes/cams.html">cams</a></li>
+                            <li><a href="/notes/gears_and_gear_trains.html">gears and gear trains</a></li>
+                            <li><a href="/notes/flywheels_and_governors.html">flywheels and governors</a></li>
+                            <li><a href="/notes/balancing_of_reciprocating_and_rotating_masses.html">balancing of reciprocating and rotating masses</a></li>
+                            <li><a href="/notes/gyroscope.html">gyroscope</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="/notes/vibrations.html">Vibrations</a>
+                        <ul class="sub-topics">
+                            <li><a href="/notes/free_and_forced_vibration.html">Free and forced vibration of single degree of freedom systems</a></li>
+                            <li><a href="/notes/effect_of_damping.html">effect of damping</a></li>
+                            <li><a href="/notes/vibration_isolation.html">vibration isolation</a></li>
+                            <li><a href="/notes/resonance.html">resonance</a></li>
+                            <li><a href="/notes/critical_speeds_of_shafts.html">critical speeds of shafts</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="/notes/machine_design.html">Machine Design</a>
+                        <ul class="sub-topics">
+                            <li><a href="/notes/design_for_static_and_dynamic_loading.html">Design for static and dynamic loading</a></li>
+                            <li><a href="/notes/failure_theories.html">failure theories</a></li>
+                            <li><a href="/notes/fatigue_strength_and_the_s-n_diagram.html">fatigue strength and the S-N diagram</a></li>
+                            <li><a href="/notes/design_of_bolted_joints.html">design of bolted joints</a></li>
+                            <li><a href="/notes/design_of_riveted_joints.html">design of riveted joints</a></li>
+                            <li><a href="/notes/design_of_welded_joints.html">design of welded joints</a></li>
+                            <li><a href="/notes/design_of_shafts.html">design of shafts</a></li>
+                            <li><a href="/notes/design_of_gears.html">design of gears</a></li>
+                            <li><a href="/notes/design_of_rolling_contact_bearings.html">design of rolling contact bearings</a></li>
+                            <li><a href="/notes/design_of_sliding_contact_bearings.html">design of sliding contact bearings</a></li>
+                            <li><a href="/notes/design_of_brakes_and_clutches.html">design of brakes and clutches</a></li>
+                            <li><a href="/notes/design_of_springs.html">design of springs</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <h3>FMTS</h3>
+                <ul>
+                    <li>
+                        <a href="/notes/fluid_mechanics.html">Fluid Mechanics</a>
+                        <ul class="sub-topics">
+                           <li><a href="/notes/fluid_properties.html">Fluid properties</a></li>
+                           <li><a href="/notes/fluid_statics.html">fluid statics</a></li>
+                           <li><a href="/notes/forces_on_submerged_bodies.html">forces on submerged bodies</a></li>
+                           <li><a href="/notes/stability_of_floating_bodies.html">stability of floating bodies</a></li>
+                           <li><a href="/notes/control-volume_analysis.html">control-volume analysis of mass, momentum and energy</a></li>
+                           <li><a href="/notes/fluid_acceleration.html">fluid acceleration</a></li>
+                           <li><a href="/notes/differential_equations_of_continuity_and_momentum.html">differential equations of continuity and momentum</a></li>
+                           <li><a href="/notes/bernoullis_equation.html">Bernoulli's equation</a></li>
+                           <li><a href="/notes/dimensional_analysis.html">dimensional analysis</a></li>
+                           <li><a href="/notes/viscous_flow_of_incompressible_fluids.html">viscous flow of incompressible fluids</a></li>
+                           <li><a href="/notes/boundary_layer.html">boundary layer</a></li>
+                           <li><a href="/notes/elementary_turbulent_flow.html">elementary turbulent flow</a></li>
+                           <li><a href="/notes/flow_through_pipes.html">flow through pipes</a></li>
+                           <li><a href="/notes/head_losses_in_pipes_bends_and_fittings.html">head losses in pipes, bends and fittings</a></li>
+                           <li><a href="/notes/basics_of_compressible_fluid_flow.html">basics of compressible fluid flow</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="/notes/heat_transfer.html">Heat Transfer</a>
+                        <ul class="sub-topics">
+                           <li><a href="/notes/modes_of_heat_transfer.html">Modes of heat transfer</a></li>
+                           <li><a href="/notes/one_dimensional_heat_conduction.html">one dimensional heat conduction</a></li>
+                           <li><a href="/notes/resistance_concept_and_electrical_analogy.html">resistance concept and electrical analogy</a></li>
+                           <li><a href="/notes/heat_transfer_through_fins.html">heat transfer through fins</a></li>
+                           <li><a href="/notes/unsteady_heat_conduction.html">unsteady heat conduction</a></li>
+                           <li><a href="/notes/lumped_parameter_system.html">lumped parameter system</a></li>
+                           <li><a href="/notes/heislers_charts.html">Heisler's charts</a></li>
+                           <li><a href="/notes/thermal_boundary_layer.html">thermal boundary layer</a></li>
+                           <li><a href="/notes/dimensionless_parameters_in_convective_heat_transfer.html">dimensionless parameters in free and forced convective heat transfer</a></li>
+                           <li><a href="/notes/heat_transfer_correlations.html">heat transfer correlations for flow over flat plates and through pipes</a></li>
+                           <li><a href="/notes/effect_of_turbulence.html">effect of turbulence</a></li>
+                           <li><a href="/notes/heat_exchanger_performance.html">heat exchanger performance</a></li>
+                           <li><a href="/notes/lmtd_and_ntu_methods.html">LMTD and NTU methods</a></li>
+                           <li><a href="/notes/radiative_heat_transfer.html">radiative heat transfer</a></li>
+                           <li><a href="/notes/stefan-boltzmann_law.html">Stefan-Boltzmann law</a></li>
+                           <li><a href="/notes/wiens_displacement_law.html">Wien's displacement law</a></li>
+                           <li><a href="/notes/black_and_grey_surfaces.html">black and grey surfaces</a></li>
+                           <li><a href="/notes/view_factors.html">view factors</a></li>
+                           <li><a href="/notes/radiation_network_analysis.html">radiation network analysis</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="/notes/thermodynamics.html">Thermodynamics</a>
+                        <ul class="sub-topics">
+                           <li><a href="/notes/thermodynamic_systems_and_processes.html">Thermodynamic systems and processes</a></li>
+                           <li><a href="/notes/properties_of_pure_substances.html">properties of pure substances</a></li>
+                           <li><a href="/notes/behavior_of_ideal_and_real_gases.html">behavior of ideal and real gases</a></li>
+                           <li><a href="/notes/zeroth_and_first_laws_of_thermodynamics.html">zeroth and first laws of thermodynamics</a></li>
+                           <li><a href="/notes/calculation_of_work_and_heat.html">calculation of work and heat in various processes</a></li>
+                           <li><a href="/notes/second_law_of_thermodynamics.html">second law of thermodynamics</a></li>
+                           <li><a href="/notes/thermodynamic_property_charts_and_tables.html">thermodynamic property charts and tables</a></li>
+                           <li><a href="/notes/availability_and_irreversibility.html">availability and irreversibility</a></li>
+                           <li><a href="/notes/thermodynamic_relations.html">thermodynamic relations</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="/notes/applications.html">Applications</a>
+                        <ul class="sub-topics">
+                           <li><a href="/notes/power_engineering.html">Power Engineering</a></li>
+                           <li><a href="/notes/ic_engines.html">I.C. Engines</a></li>
+                           <li><a href="/notes/refrigeration_and_air-conditioning.html">Refrigeration and air-conditioning</a></li>
+                           <li><a href="/notes/turbomachinery.html">Turbomachinery</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <h3>MMIE</h3>
+                <ul>
+                    <li>
+                        <a href="/notes/engineering_materials.html">Engineering Materials</a>
+                        <ul class="sub-topics">
+                           <li><a href="/notes/structure_and_properties_of_engineering_materials.html">Structure and properties of engineering materials</a></li>
+                           <li><a href="/notes/phase_diagrams.html">phase diagrams</a></li>
+                           <li><a href="/notes/heat_treatment.html">heat treatment</a></li>
+                           <li><a href="/notes/stress-strain_diagrams.html">stress-strain diagrams for engineering materials</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="/notes/casting_forming_and_joining_processes.html">Casting, Forming and Joining Processes</a>
+                        <ul class="sub-topics">
+                           <li><a href="/notes/casting.html">Different types of castings, design of patterns, moulds and cores</a></li>
+                           <li><a href="/notes/solidification_and_cooling.html">solidification and cooling</a></li>
+                           <li><a href="/notes/riser_and_gating_design.html">riser and gating design</a></li>
+                           <li><a href="/notes/plastic_deformation_and_yield_criteria.html">Plastic deformation and yield criteria</a></li>
+                           <li><a href="/notes/hot_and_cold_working_processes.html">fundamentals of hot and cold working processes</a></li>
+                           <li><a href="/notes/load_estimation_for_bulk_and_sheet_metal_forming.html">load estimation for bulk and sheet metal forming processes</a></li>
+                           <li><a href="/notes/powder_metallurgy.html">principles of powder metallurgy</a></li>
+                           <li><a href="/notes/welding_brazing_soldering_and_adhesive_bonding.html">Principles of welding, brazing, soldering and adhesive bonding</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="/notes/machining_and_machine_tool_operations.html">Machining and Machine Tool Operations</a>
+                        <ul class="sub-topics">
+                           <li><a href="/notes/mechanics_of_machining.html">Mechanics of machining</a></li>
+                           <li><a href="/notes/basic_machine_tools.html">basic machine tools</a></li>
+                           <li><a href="/notes/cutting_tools.html">single and multi-point cutting tools, tool geometry and materials, tool life and wear</a></li>
+                           <li><a href="/notes/economics_of_machining.html">economics of machining</a></li>
+                           <li><a href="/notes/non-traditional_machining_processes.html">principles of non-traditional machining processes</a></li>
+                           <li><a href="/notes/work_holding_jigs_and_fixtures.html">principles of work holding, jigs and fixtures</a></li>
+                           <li><a href="/notes/abrasive_machining_processes.html">abrasive machining processes</a></li>
+                           <li><a href="/notes/nc_cnc_machines_and_cnc_programming.html">NC/CNC machines and CNC programming</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="/notes/metrology_and_inspection.html">Metrology and Inspection</a>
+                         <ul class="sub-topics">
+                           <li><a href="/notes/limits_fits_and_tolerances.html">Limits, fits and tolerances</a></li>
+                           <li><a href="/notes/linear_and_angular_measurements.html">linear and angular measurements</a></li>
+                           <li><a href="/notes/comparators.html">comparators</a></li>
+                           <li><a href="/notes/interferometry.html">interferometry</a></li>
+                           <li><a href="/notes/form_and_finish_measurement.html">form and finish measurement</a></li>
+                           <li><a href="/notes/alignment_and_testing_methods.html">alignment and testing methods</a></li>
+                           <li><a href="/notes/tolerance_analysis.html">tolerance analysis in manufacturing and assembly</a></li>
+                           <li><a href="/notes/coordinate-measuring_machine.html">concepts of coordinate-measuring machine (CMM)</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="/notes/computer_integrated_manufacturing.html">Computer Integrated Manufacturing</a>
+                        <ul class="sub-topics">
+                           <li><a href="/notes/cad_cam_integration.html">Basic concepts of CAD/CAM and their integration tools</a></li>
+                           <li><a href="/notes/additive_manufacturing.html">additive manufacturing</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="/notes/production_planning_and_control.html">Production Planning and Control</a>
+                        <ul class="sub-topics">
+                           <li><a href="/notes/forecasting_models.html">Forecasting models</a></li>
+                           <li><a href="/notes/aggregate_production_planning.html">aggregate production planning</a></li>
+                           <li><a href="/notes/scheduling.html">scheduling</a></li>
+                           <li><a href="/notes/materials_requirement_planning.html">materials requirement planning</a></li>
+                           <li><a href="/notes/lean_manufacturing.html">lean manufacturing</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="/notes/inventory_control.html">Inventory Control</a>
+                        <ul class="sub-topics">
+                           <li><a href="/notes/deterministic_models.html">Deterministic models</a></li>
+                           <li><a href="/notes/safety_stock_inventory_control_systems.html">safety stock inventory control systems</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="/notes/operations_research.html">Operations Research</a>
+                        <ul class="sub-topics">
+                           <li><a href="/notes/linear_programming.html">Linear programming</a></li>
+                           <li><a href="/notes/simplex_method.html">simplex method</a></li>
+                           <li><a href="/notes/transportation.html">transportation</a></li>
+                           <li><a href="/notes/assignment.html">assignment</a></li>
+                           <li><a href="/notes/network_flow_models.html">network flow models</a></li>
+                           <li><a href="/notes/simple_queuing_models.html">simple queuing models</a></li>
+                           <li><a href="/notes/pert_and_cpm.html">PERT and CPM</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <h3>Test</h3>
+                <ul>
+                    <li><a href="/tools/gate_calculator.html">GATE Calculator</a></li>
+                </ul>
+            </nav>
+        </aside>
+        <div class="main-content">
+            <header class="site-header">
+                <button class="sidebar-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <h1>GATE Mechanical Preparation Notes</h1>
+                <nav>
+                    <ul>
+                        <li><a href="/index.html">Home</a></li>
+                        <li><a href="/notes/thermodynamics.html">Thermodynamics</a></li>
+                        <li><a href="/notes/strength_of_materials.html">Strength of Materials</a></li>
+                        <li><a href="/notes/heat_transfer.html">Heat Transfer</a></li>
+                    </ul>
+                </nav>
+            </header>
+<main>\n                <section class="intro">\n                    <h2>Welcome to Your GATE Mechanical Preparation</h2>\n                    <p>This site contains detailed notes and concepts for all important topics in GATE Mechanical Engineering.</p>\n                </section>\n            </main>
+            <footer>
+                <p>© 2025 Your Name - GATE Mechanical Preparation</p>
+            </footer>
+        </div>
+    </div>
+    <script src="/script.js"></script>
 </body>
 </html>
