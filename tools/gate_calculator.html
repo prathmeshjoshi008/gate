@@ -3,488 +3,340 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Scientific Calculator</title>
-    <style>
-        :root {
-            --bg-color: #E3E3E3;
-            --header-bg: #4A89DC;
-            --display-bg: #FFFFFF;
-            --display-border: #BDBDBD;
-            --button-light-bg: #F5F5F5;
-            --button-dark-bg: #E8E8E8;
-            --button-hover-bg: #D6D6D6;
-            --button-red: #D9534F;
-            --button-red-hover: #C9302C;
-            --button-green: #5CB85C;
-            --button-green-hover: #449D44;
-            --text-dark: #000000;
-            --text-light: #FFFFFF;
-        }
-
-        body {
-            font-family: Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            margin: 0;
-            background-color: #f0f0f0;
-        }
-
-        .calculator-container {
-            width: 100%;
-            max-width: 820px;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-            display: flex;
-            flex-direction: column;
-        }
-
-        .calculator-header {
-            background-color: var(--header-bg);
-            color: var(--text-light);
-            padding: 12px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 1.2rem;
-            font-weight: bold;
-        }
-
-        .calculator-header a {
-            color: var(--text-light);
-            text-decoration: none;
-            font-size: 1rem;
-            font-weight: normal;
-        }
-
-        .calculator-body {
-            background-color: var(--bg-color);
-            padding: 15px;
-        }
-        
-        .calculator-display {
-            background-color: var(--display-bg);
-            border: 1px solid var(--display-border);
-            border-radius: 6px;
-            padding: 5px 15px;
-            margin-bottom: 15px;
-            text-align: right;
-            box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
-        }
-
-        #history-display {
-            min-height: 24px;
-            font-size: 1rem;
-            color: #666;
-            border-bottom: 1px solid #eee;
-            margin-bottom: 5px;
-            padding-bottom: 5px;
-            overflow-x: auto;
-            white-space: nowrap;
-        }
-
-        #main-display {
-            font-size: 2.8rem;
-            color: var(--text-dark);
-            min-height: 55px;
-            font-weight: normal;
-            overflow-x: auto;
-            white-space: nowrap;
-            line-height: 55px;
-        }
-
-        .controls-grid {
-            display: grid;
-            gap: 8px;
-        }
-
-        .top-controls {
-            display: grid;
-            grid-template-columns: 1fr 2fr 5fr;
-            gap: 8px;
-            margin-bottom: 8px;
-            align-items: center;
-        }
-        
-        .memory-controls {
-            display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            gap: 8px;
-        }
-        
-        .calculator-buttons {
-            display: grid;
-            grid-template-columns: repeat(11, 1fr);
-            gap: 8px;
-        }
-
-        .btn {
-            height: 45px;
-            font-size: 1rem;
-            border: 1px solid #bbb;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: background-color 0.2s, box-shadow 0.2s;
-            background-color: var(--button-light-bg);
-            color: var(--text-dark);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            box-shadow: 0 2px 2px rgba(0,0,0,0.1);
-        }
-        
-        .btn:active {
-            box-shadow: inset 0 2px 2px rgba(0,0,0,0.15);
-            transform: translateY(1px);
-        }
-        
-        .btn-dark {
-            background-color: var(--button-dark-bg);
-        }
-        
-        .btn-red {
-            background-color: var(--button-red);
-            color: var(--text-light);
-            font-weight: bold;
-        }
-        .btn-red:hover { background-color: var(--button-red-hover); }
-
-        .btn-green {
-            background-color: var(--button-green);
-            color: var(--text-light);
-            font-size: 1.5rem;
-            grid-row: span 2;
-            height: auto;
-        }
-        .btn-green:hover { background-color: var(--button-green-hover); }
-        
-        .btn-zero {
-            grid-column: span 2;
-        }
-        
-        .top-controls .btn {
-            height: 35px;
-            font-size: 0.9rem;
-        }
-
-        .deg-rad-toggle {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.9rem;
-        }
-
-        .deg-rad-toggle input { margin: 0 5px 0 10px; }
-    </style>
+    <title>GATE Mechanical Notes</title>
+    <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
-
-    <div class="calculator-container">
-        <header class="calculator-header">
-            <span>Scientific Calculator</span>
-            <a href="#">Help</a>
-        </header>
-        <main class="calculator-body">
-            <div class="calculator-display">
-                <div id="history-display"></div>
-                <div id="main-display">0</div>
-            </div>
-
-            <div class="controls-grid">
-                <div class="top-controls">
-                    <button class="btn btn-dark" data-action="operator" data-value="%">mod</button>
-                    <div class="deg-rad-toggle">
-                        <input type="radio" id="deg" name="angle-mode" value="deg" checked>
-                        <label for="deg">Deg</label>
-                        <input type="radio" id="rad" name="angle-mode" value="rad">
-                        <label for="rad">Rad</label>
-                    </div>
-                    <div class="memory-controls">
-                        <button class="btn btn-dark" data-action="memory-clear">MC</button>
-                        <button class="btn btn-dark" data-action="memory-recall">MR</button>
-                        <button class="btn btn-dark" data-action="memory-store">MS</button>
-                        <button class="btn btn-dark" data-action="memory-add">M+</button>
-                        <button class="btn btn-dark" data-action="memory-subtract">M-</button>
-                    </div>
-                </div>
-
-                <div id="button-grid" class="calculator-buttons">
-                    <!-- Row 1 -->
-                    <button class="btn btn-dark" data-action="sinh">sinh</button>
-                    <button class="btn btn-dark" data-action="cosh">cosh</button>
-                    <button class="btn btn-dark" data-action="tanh">tanh</button>
-                    <button class="btn btn-dark" data-action="exp">Exp</button>
-                    <button class="btn btn-dark" data-action="parenthesis" data-value="(">(</button>
-                    <button class="btn btn-dark" data-action="parenthesis" data-value=")">)</button>
-                    <button class="btn btn-red" data-action="backspace">&larr;</button>
-                    <button class="btn btn-red" data-action="clear">C</button>
-                    <button class="btn btn-dark" data-action="negate">+/-</button>
-                    <button class="btn btn-dark" data-action="sqrt">&radic;</button>
-                    <button class="btn btn-dark" data-action="percentage">%</button>
-                    
-                    <!-- Row 2 -->
-                    <button class="btn btn-dark" data-action="asinh">sinh<sup>-1</sup></button>
-                    <button class="btn btn-dark" data-action="acosh">cosh<sup>-1</sup></button>
-                    <button class="btn btn-dark" data-action="atanh">tanh<sup>-1</sup></button>
-                    <button class="btn btn-dark" data-action="log2">log<sub>2</sub>x</button>
-                    <button class="btn btn-dark" data-action="ln">ln</button>
-                    <button class="btn btn-dark" data-action="log10">log</button>
-                    <button class="btn" data-action="number" data-value="7">7</button>
-                    <button class="btn" data-action="number" data-value="8">8</button>
-                    <button class="btn" data-action="number" data-value="9">9</button>
-                    <button class="btn btn-dark" data-action="operator" data-value="/">&divide;</button>
-                    <button class="btn btn-dark" data-action="reciprocal">1/x</button>
-
-                    <!-- Row 3 -->
-                    <button class="btn btn-dark" data-action="pi">&pi;</button>
-                    <button class="btn btn-dark" data-action="e">e</button>
-                    <button class="btn btn-dark" data-action="factorial">n!</button>
-                    <button class="btn btn-dark" data-action="log-y">log<sub>y</sub>x</button>
-                    <button class="btn btn-dark" data-action="exp-e">e<sup>x</sup></button>
-                    <button class="btn btn-dark" data-action="exp-10">10<sup>x</sup></button>
-                    <button class="btn" data-action="number" data-value="4">4</button>
-                    <button class="btn" data-action="number" data-value="5">5</button>
-                    <button class="btn" data-action="number" data-value="6">6</button>
-                    <button class="btn btn-dark" data-action="operator" data-value="*">&times;</button>
-                    <button class="btn btn-green" data-action="equals">=</button>
-                    
-                    <!-- Row 4 -->
-                    <button class="btn btn-dark" data-action="sin">sin</button>
-                    <button class="btn btn-dark" data-action="cos">cos</button>
-                    <button class="btn btn-dark" data-action="tan">tan</button>
-                    <button class="btn btn-dark" data-action="power-y">x<sup>y</sup></button>
-                    <button class="btn btn-dark" data-action="power-3">x<sup>3</sup></button>
-                    <button class="btn btn-dark" data-action="power-2">x<sup>2</sup></button>
-                    <button class="btn" data-action="number" data-value="1">1</button>
-                    <button class="btn" data-action="number" data-value="2">2</button>
-                    <button class="btn" data-action="number" data-value="3">3</button>
-                    <button class="btn btn-dark" data-action="operator" data-value="-">-</button>
-                    
-                    <!-- Row 5 -->
-                    <button class="btn btn-dark" data-action="asin">sin<sup>-1</sup></button>
-                    <button class="btn btn-dark" data-action="acos">cos<sup>-1</sup></button>
-                    <button class="btn btn-dark" data-action="atan">tan<sup>-1</sup></button>
-                    <button class="btn btn-dark" data-action="cuberoot"><sup>3</sup>&radic;x</button>
-                    <button class="btn btn-dark" data-action="yroot"><sup>y</sup>&radic;x</button>
-                    <button class="btn btn-dark" data-action="abs">|x|</button>
-                    <button class="btn btn-zero" data-action="number" data-value="0">0</button>
-                    <button class="btn" data-action="decimal">.</button>
-                    <button class="btn btn-dark" data-action="operator" data-value="+">+</button>
-                </div>
-            </div>
-        </main>
-    </div>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const mainDisplay = document.getElementById('main-display');
-            const historyDisplay = document.getElementById('history-display');
-            const angleModeRadios = document.getElementsByName('angle-mode');
-
-            let currentInput = '0';
-            let expression = '';
-            let memory = 0;
-            let isResult = false;
-            let angleMode = 'deg';
-
-            document.querySelector('.controls-grid').addEventListener('click', handleButtonClick);
-            
-            angleModeRadios.forEach(radio => radio.addEventListener('change', (e) => angleMode = e.target.value));
-            
-            function handleButtonClick(event) {
-                const target = event.target.closest('.btn');
-                if (!target) return;
-
-                const { action, value } = target.dataset;
-
-                if (action === 'number') handleNumber(value);
-                else if (action === 'operator') handleOperator(value);
-                else if (action === 'decimal') handleDecimal();
-                else if (action === 'clear') handleClear();
-                else if (action === 'backspace') handleBackspace();
-                else if (action === 'equals') handleEquals();
-                else if (action === 'negate') handleNegate();
-                else if (action.startsWith('memory')) handleMemory(action);
-                else if (action === 'parenthesis') handleParenthesis(value);
-                else handleFunction(action);
-            }
-            
-            function handleNumber(num) {
-                if (isResult || currentInput === '0' && num !== '.') {
-                    currentInput = num;
-                    isResult = false;
-                } else {
-                    currentInput += num;
-                }
-                updateDisplay();
-            }
-
-            function handleOperator(op) {
-                if (currentInput === '' && expression !== '' && !expression.endsWith(')')) {
-                    expression = expression.slice(0, -1) + op;
-                } else {
-                    expression += currentInput + op;
-                    currentInput = '';
-                }
-                isResult = false;
-                updateDisplay();
-            }
-            
-             function handleDecimal() {
-                if (isResult) {
-                    currentInput = '0.';
-                    isResult = false;
-                } else if (!currentInput.includes('.')) {
-                    currentInput = (currentInput === '') ? '0.' : currentInput + '.';
-                }
-                updateDisplay();
-            }
-
-            function handleClear() {
-                currentInput = '0';
-                expression = '';
-                isResult = false;
-                updateDisplay();
-            }
-
-            function handleBackspace() {
-                if (currentInput.length > 1) {
-                    currentInput = currentInput.slice(0, -1);
-                } else {
-                    currentInput = '0';
-                }
-                updateDisplay();
-            }
-
-            function handleEquals() {
-                if (expression === '' && currentInput === '0') return;
-                const finalExpression = (expression + currentInput).replace(/--/g, '+');
-                historyDisplay.textContent = finalExpression.replace(/\*/g, '×').replace(/\//g, '÷') + '=';
-
-                try {
-                    const calculate = new Function('return ' + sanitizeExpression(finalExpression));
-                    let result = calculate();
-                    result = parseFloat(result.toPrecision(15));
-                    
-                    mainDisplay.textContent = result;
-                    currentInput = result.toString();
-                    expression = '';
-                    isResult = true;
-                } catch (error) {
-                    mainDisplay.textContent = 'Error';
-                    currentInput = '0';
-                    expression = '';
-                    isResult = true;
-                }
-            }
-            
-            function handleNegate() {
-                if (currentInput !== '0') {
-                    currentInput = (parseFloat(currentInput) * -1).toString();
-                }
-                updateDisplay();
-            }
-
-            function handleMemory(memAction) {
-                const currentValue = parseFloat(currentInput);
-                switch (memAction) {
-                    case 'memory-store': memory = currentValue; break;
-                    case 'memory-recall': currentInput = memory.toString(); break;
-                    case 'memory-clear': memory = 0; break;
-                    case 'memory-add': memory += currentValue; break;
-                    case 'memory-subtract': memory -= currentValue; break;
-                }
-                isResult = true;
-                updateDisplay();
-            }
-            
-            function handleFunction(func) {
-                let value = parseFloat(currentInput);
-                let result;
-                
-                try {
-                    switch(func) {
-                        case 'sin': result = angleMode === 'deg' ? Math.sin(value * Math.PI / 180) : Math.sin(value); break;
-                        case 'cos': result = angleMode === 'deg' ? Math.cos(value * Math.PI / 180) : Math.cos(value); break;
-                        case 'tan': result = angleMode === 'deg' ? Math.tan(value * Math.PI / 180) : Math.tan(value); break;
-                        case 'asin': result = angleMode === 'deg' ? Math.asin(value) * 180 / Math.PI : Math.asin(value); break;
-                        case 'acos': result = angleMode === 'deg' ? Math.acos(value) * 180 / Math.PI : Math.acos(value); break;
-                        case 'atan': result = angleMode === 'deg' ? Math.atan(value) * 180 / Math.PI : Math.atan(value); break;
-                        case 'sinh': result = Math.sinh(value); break;
-                        case 'cosh': result = Math.cosh(value); break;
-                        case 'tanh': result = Math.tanh(value); break;
-                        case 'asinh': result = Math.asinh(value); break;
-                        case 'acosh': result = Math.acosh(value); break;
-                        case 'atanh': result = Math.atanh(value); break;
-                        case 'log10': result = Math.log10(value); break;
-                        case 'ln': result = Math.log(value); break;
-                        case 'log2': result = Math.log2(value); break;
-                        case 'sqrt': result = Math.sqrt(value); break;
-                        case 'cuberoot': result = Math.cbrt(value); break;
-                        case 'power-2': result = Math.pow(value, 2); break;
-                        case 'power-3': result = Math.pow(value, 3); break;
-                        case 'exp-e': result = Math.exp(value); break;
-                        case 'exp-10': result = Math.pow(10, value); break;
-                        case 'reciprocal': result = 1 / value; break;
-                        case 'abs': result = Math.abs(value); break;
-                        case 'factorial': result = factorial(value); break;
-                        case 'pi': currentInput = Math.PI.toString(); updateDisplay(); return;
-                        case 'e': currentInput = Math.E.toString(); updateDisplay(); return;
-                        case 'percentage':
-                             if (expression) {
-                                const lastNumMatch = expression.match(/(\d+(\.\d+)?)(\D+)$/);
-                                if (lastNumMatch) {
-                                    const lastNum = parseFloat(lastNumMatch[1]);
-                                    currentInput = (lastNum * (value / 100)).toString();
-                                }
-                            }
-                            updateDisplay();
-                            return;
-                        case 'exp': handleOperator('*10**'); return;
-                        case 'power-y': handleOperator('**'); return;
-                        case 'log-y': handleOperator(','); return;
-                        case 'yroot': handleOperator('**(1/'); return;
-                        default: return;
-                    }
-                    currentInput = parseFloat(result.toPrecision(15)).toString();
-                    isResult = true;
-                    updateDisplay();
-                } catch(e) {
-                    currentInput = 'Error'; isResult = true; updateDisplay();
-                }
-            }
-
-            function handleParenthesis(paren) {
-                if (isResult) { currentInput = ''; isResult = false; }
-                currentInput += paren;
-                updateDisplay();
-            }
-
-            function updateDisplay() {
-                mainDisplay.textContent = currentInput;
-                historyDisplay.textContent = expression.replace(/\*/g, '×').replace(/\//g, '÷');
-            }
-            
-            function sanitizeExpression(expr) {
-                let sanitized = expr.replace(/(\d+),(\d+)/g, 'Math.log($2)/Math.log($1)');
-                sanitized = sanitized.replace(/(\d+)\*\*\(1\/(\d+)\)/g, 'Math.pow($1, 1/$2)');
-                sanitized = sanitized.replace(/(\d)\(/g, '$1*(');
-                sanitized = sanitized.replace(/\)(\d)/g, ')*$1');
-                return sanitized;
-            }
-
-            function factorial(n) {
-                if (n < 0 || n % 1 !== 0) throw new Error("Invalid input");
-                if (n > 170) throw new Error("Overflow");
-                if (n === 0 || n === 1) return 1;
-                let result = 1;
-                for (let i = 2; i <= n; i++) result *= i;
-                return result;
-            }
-        });
-    </script>
-
-</body>
-</html>
+    <div class="container">
+        <aside class="sidebar">
+            <nav>
+                <h3>APTITUDE</h3>
+                <h3>MATH</h3>
+                <ul>
+                    <li>
+                        <a href="/notes/linear_algebra.html">Linear Algebra</a>
+                        <ul class="sub-topics">
+                            <li><a href="/notes/matrix_algebra.html">Matrix algebra</a></li>
+                            <li><a href="/notes/systems_of_linear_equations.html">systems of linear equations</a></li>
+                            <li><a href="/notes/eigen_values_and_eigen_vectors.html">eigen values and eigen vectors</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="/notes/calculus.html">Calculus</a>
+                        <ul class="sub-topics">
+                            <li><a href="/notes/functions_of_single_variable.html">Functions of single variable</a></li>
+                            <li><a href="/notes/limit_continuity_and_differentiability.html">limit, continuity and differentiability</a></li>
+                            <li><a href="/notes/mean_value_theorems.html">mean value theorems</a></li>
+                            <li><a href="/notes/indeterminate_forms.html">indeterminate forms</a></li>
+                            <li><a href="/notes/evaluation_of_definite_and_improper_integrals.html">evaluation of definite and improper integrals</a></li>
+                            <li><a href="/notes/double_and_triple_integrals.html">double and triple integrals</a></li>
+                            <li><a href="/notes/partial_derivatives.html">partial derivatives</a></li>
+                            <li><a href="/notes/total_derivative.html">total derivative</a></li>
+                            <li><a href="/notes/taylor_series.html">Taylor series (in one and two variables)</a></li>
+                            <li><a href="/notes/maxima_and_minima.html">maxima and minima</a></li>
+                            <li><a href="/notes/fourier_series.html">Fourier series</a></li>
+                            <li><a href="/notes/gradient_divergence_and_curl.html">gradient, divergence and curl</a></li>
+                            <li><a href="/notes/vector_identities.html">vector identities</a></li>
+                            <li><a href="/notes/directional_derivatives.html">directional derivatives</a></li>
+                            <li><a href="/notes/line_surface_and_volume_integrals.html">line, surface and volume integrals</a></li>
+                            <li><a href="/notes/applications_of_gauss_stokes_and_greens_theorems.html">applications of Gauss, Stokes and Green's theorems</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="/notes/differential_equations.html">Differential Equations</a>
+                        <ul class="sub-topics">
+                            <li><a href="/notes/first_order_equations.html">First order equations (linear and nonlinear)</a></li>
+                            <li><a href="/notes/higher_order_linear_differential_equations.html">higher order linear differential equations with constant coefficients</a></li>
+                            <li><a href="/notes/euler-cauchy_equation.html">Euler-Cauchy equation</a></li>
+                            <li><a href="/notes/initial_and_boundary_value_problems.html">initial and boundary value problems</a></li>
+                            <li><a href="/notes/laplace_transforms.html">Laplace transforms</a></li>
+                            <li><a href="/notes/solutions_of_heat_wave_and_laplaces_equations.html">solutions of heat, wave and Laplace's equations</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="/notes/complex_variables.html">Complex Variables</a>
+                        <ul class="sub-topics">
+                            <li><a href="/notes/analytic_functions.html">Analytic functions</a></li>
+                            <li><a href="/notes/cauchy-riemann_equations.html">Cauchy-Riemann equations</a></li>
+                            <li><a href="/notes/cauchys_integral_theorem_and_integral_formula.html">Cauchy's integral theorem and integral formula</a></li>
+                            <li><a href="/notes/taylor_and_laurent_series.html">Taylor and Laurent series</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="/notes/probability_and_statistics.html">Probability and Statistics</a>
+                        <ul class="sub-topics">
+                            <li><a href="/notes/definitions_of_probability.html">Definitions of probability</a></li>
+                            <li><a href="/notes/sampling_theorems.html">sampling theorems</a></li>
+                            <li><a href="/notes/conditional_probability.html">conditional probability</a></li>
+                            <li><a href="/notes/mean_median_mode_and_standard_deviation.html">mean, median, mode and standard deviation</a></li>
+                            <li><a href="/notes/random_variables.html">random variables</a></li>
+                            <li><a href="/notes/binomial_distribution.html">binomial distribution</a></li>
+                            <li><a href="/notes/poisson_distribution.html">Poisson distribution</a></li>
+                            <li><a href="/notes/normal_distributions.html">normal distributions</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="/notes/numerical_methods.html">Numerical Methods</a>
+                        <ul class="sub-topics">
+                            <li><a href="/notes/numerical_solutions_of_linear_and_non-linear_algebraic_equations.html">Numerical solutions of linear and non-linear algebraic equations</a></li>
+                            <li><a href="/notes/integration_by_trapezoidal_and_simpsons_rules.html">integration by trapezoidal and Simpson's rules</a></li>
+                            <li><a href="/notes/single_and_multi-step_methods_for_differential_equations.html">single and multi-step methods for differential equations</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <h3>EMD</h3>
+                <ul>
+                    <li>
+                        <a href="/notes/engineering_mechanics.html">Engineering Mechanics</a>
+                        <ul class="sub-topics">
+                            <li><a href="/notes/free-body_diagrams_and_equilibrium.html">Free-body diagrams and equilibrium</a></li>
+                            <li><a href="/notes/friction_and_its_applications.html">friction and its applications</a></li>
+                            <li><a href="/notes/trusses_and_frames.html">trusses and frames</a></li>
+                            <li><a href="/notes/virtual_work.html">virtual work</a></li>
+                            <li><a href="/notes/kinematics_and_dynamics_of_rigid_bodies.html">kinematics and dynamics of rigid bodies in plane motion</a></li>
+                            <li><a href="/notes/impulse_and_momentum.html">impulse and momentum (linear and angular)</a></li>
+                            <li><a href="/notes/energy_formulations.html">energy formulations</a></li>
+                            <li><a href="/notes/lagranges_equation.html">Lagrange's equation</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="/notes/mechanics_of_materials.html">Mechanics of Materials</a>
+                         <ul class="sub-topics">
+                            <li><a href="/notes/stress_and_strain.html">Stress and strain</a></li>
+                            <li><a href="/notes/elastic_constants.html">elastic constants</a></li>
+                            <li><a href="/notes/poissons_ratio.html">Poisson's ratio</a></li>
+                            <li><a href="/notes/mohrs_circle.html">Mohr's circle for plane stress and plane strain</a></li>
+                            <li><a href="/notes/thin_cylinders.html">thin cylinders</a></li>
+                            <li><a href="/notes/shear_force_and_bending_moment_diagrams.html">shear force and bending moment diagrams</a></li>
+                            <li><a href="/notes/bending_and_shear_stresses.html">bending and shear stresses</a></li>
+                            <li><a href="/notes/concept_of_shear_centre.html">concept of shear centre</a></li>
+                            <li><a href="/notes/deflection_of_beams.html">deflection of beams</a></li>
+                            <li><a href="/notes/torsion_of_circular_shafts.html">torsion of circular shafts</a></li>
+                            <li><a href="/notes/eulers_theory_of_columns.html">Euler's theory of columns</a></li>
+                            <li><a href="/notes/energy_methods.html">energy methods</a></li>
+                            <li><a href="/notes/thermal_stresses.html">thermal stresses</a></li>
+                            <li><a href="/notes/strain_gauges_and_rosettes.html">strain gauges and rosettes</a></li>
+                            <li><a href="/notes/testing_of_materials.html">testing of materials with universal testing machine</a></li>
+                            <li><a href="/notes/testing_of_hardness_and_impact_strength.html">testing of hardness and impact strength</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="/notes/theory_of_machines.html">Theory of Machines</a>
+                        <ul class="sub-topics">
+                            <li><a href="/notes/displacement_velocity_and_acceleration_analysis.html">Displacement, velocity and acceleration analysis of plane mechanisms</a></li>
+                            <li><a href="/notes/dynamic_analysis_of_linkages.html">dynamic analysis of linkages</a></li>
+                            <li><a href="/notes/cams.html">cams</a></li>
+                            <li><a href="/notes/gears_and_gear_trains.html">gears and gear trains</a></li>
+                            <li><a href="/notes/flywheels_and_governors.html">flywheels and governors</a></li>
+                            <li><a href="/notes/balancing_of_reciprocating_and_rotating_masses.html">balancing of reciprocating and rotating masses</a></li>
+                            <li><a href="/notes/gyroscope.html">gyroscope</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="/notes/vibrations.html">Vibrations</a>
+                        <ul class="sub-topics">
+                            <li><a href="/notes/free_and_forced_vibration.html">Free and forced vibration of single degree of freedom systems</a></li>
+                            <li><a href="/notes/effect_of_damping.html">effect of damping</a></li>
+                            <li><a href="/notes/vibration_isolation.html">vibration isolation</a></li>
+                            <li><a href="/notes/resonance.html">resonance</a></li>
+                            <li><a href="/notes/critical_speeds_of_shafts.html">critical speeds of shafts</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="/notes/machine_design.html">Machine Design</a>
+                        <ul class="sub-topics">
+                            <li><a href="/notes/design_for_static_and_dynamic_loading.html">Design for static and dynamic loading</a></li>
+                            <li><a href="/notes/failure_theories.html">failure theories</a></li>
+                            <li><a href="/notes/fatigue_strength_and_the_s-n_diagram.html">fatigue strength and the S-N diagram</a></li>
+                            <li><a href="/notes/design_of_bolted_joints.html">design of bolted joints</a></li>
+                            <li><a href="/notes/design_of_riveted_joints.html">design of riveted joints</a></li>
+                            <li><a href="/notes/design_of_welded_joints.html">design of welded joints</a></li>
+                            <li><a href="/notes/design_of_shafts.html">design of shafts</a></li>
+                            <li><a href="/notes/design_of_gears.html">design of gears</a></li>
+                            <li><a href="/notes/design_of_rolling_contact_bearings.html">design of rolling contact bearings</a></li>
+                            <li><a href="/notes/design_of_sliding_contact_bearings.html">design of sliding contact bearings</a></li>
+                            <li><a href="/notes/design_of_brakes_and_clutches.html">design of brakes and clutches</a></li>
+                            <li><a href="/notes/design_of_springs.html">design of springs</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <h3>FMTS</h3>
+                <ul>
+                    <li>
+                        <a href="/notes/fluid_mechanics.html">Fluid Mechanics</a>
+                        <ul class="sub-topics">
+                           <li><a href="/notes/fluid_properties.html">Fluid properties</a></li>
+                           <li><a href="/notes/fluid_statics.html">fluid statics</a></li>
+                           <li><a href="/notes/forces_on_submerged_bodies.html">forces on submerged bodies</a></li>
+                           <li><a href="/notes/stability_of_floating_bodies.html">stability of floating bodies</a></li>
+                           <li><a href="/notes/control-volume_analysis.html">control-volume analysis of mass, momentum and energy</a></li>
+                           <li><a href="/notes/fluid_acceleration.html">fluid acceleration</a></li>
+                           <li><a href="/notes/differential_equations_of_continuity_and_momentum.html">differential equations of continuity and momentum</a></li>
+                           <li><a href="/notes/bernoullis_equation.html">Bernoulli's equation</a></li>
+                           <li><a href="/notes/dimensional_analysis.html">dimensional analysis</a></li>
+                           <li><a href="/notes/viscous_flow_of_incompressible_fluids.html">viscous flow of incompressible fluids</a></li>
+                           <li><a href="/notes/boundary_layer.html">boundary layer</a></li>
+                           <li><a href="/notes/elementary_turbulent_flow.html">elementary turbulent flow</a></li>
+                           <li><a href="/notes/flow_through_pipes.html">flow through pipes</a></li>
+                           <li><a href="/notes/head_losses_in_pipes_bends_and_fittings.html">head losses in pipes, bends and fittings</a></li>
+                           <li><a href="/notes/basics_of_compressible_fluid_flow.html">basics of compressible fluid flow</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="/notes/heat_transfer.html">Heat Transfer</a>
+                        <ul class="sub-topics">
+                           <li><a href="/notes/modes_of_heat_transfer.html">Modes of heat transfer</a></li>
+                           <li><a href="/notes/one_dimensional_heat_conduction.html">one dimensional heat conduction</a></li>
+                           <li><a href="/notes/resistance_concept_and_electrical_analogy.html">resistance concept and electrical analogy</a></li>
+                           <li><a href="/notes/heat_transfer_through_fins.html">heat transfer through fins</a></li>
+                           <li><a href="/notes/unsteady_heat_conduction.html">unsteady heat conduction</a></li>
+                           <li><a href="/notes/lumped_parameter_system.html">lumped parameter system</a></li>
+                           <li><a href="/notes/heislers_charts.html">Heisler's charts</a></li>
+                           <li><a href="/notes/thermal_boundary_layer.html">thermal boundary layer</a></li>
+                           <li><a href="/notes/dimensionless_parameters_in_convective_heat_transfer.html">dimensionless parameters in free and forced convective heat transfer</a></li>
+                           <li><a href="/notes/heat_transfer_correlations.html">heat transfer correlations for flow over flat plates and through pipes</a></li>
+                           <li><a href="/notes/effect_of_turbulence.html">effect of turbulence</a></li>
+                           <li><a href="/notes/heat_exchanger_performance.html">heat exchanger performance</a></li>
+                           <li><a href="/notes/lmtd_and_ntu_methods.html">LMTD and NTU methods</a></li>
+                           <li><a href="/notes/radiative_heat_transfer.html">radiative heat transfer</a></li>
+                           <li><a href="/notes/stefan-boltzmann_law.html">Stefan-Boltzmann law</a></li>
+                           <li><a href="/notes/wiens_displacement_law.html">Wien's displacement law</a></li>
+                           <li><a href="/notes/black_and_grey_surfaces.html">black and grey surfaces</a></li>
+                           <li><a href="/notes/view_factors.html">view factors</a></li>
+                           <li><a href="/notes/radiation_network_analysis.html">radiation network analysis</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="/notes/thermodynamics.html">Thermodynamics</a>
+                        <ul class="sub-topics">
+                           <li><a href="/notes/thermodynamic_systems_and_processes.html">Thermodynamic systems and processes</a></li>
+                           <li><a href="/notes/properties_of_pure_substances.html">properties of pure substances</a></li>
+                           <li><a href="/notes/behavior_of_ideal_and_real_gases.html">behavior of ideal and real gases</a></li>
+                           <li><a href="/notes/zeroth_and_first_laws_of_thermodynamics.html">zeroth and first laws of thermodynamics</a></li>
+                           <li><a href="/notes/calculation_of_work_and_heat.html">calculation of work and heat in various processes</a></li>
+                           <li><a href="/notes/second_law_of_thermodynamics.html">second law of thermodynamics</a></li>
+                           <li><a href="/notes/thermodynamic_property_charts_and_tables.html">thermodynamic property charts and tables</a></li>
+                           <li><a href="/notes/availability_and_irreversibility.html">availability and irreversibility</a></li>
+                           <li><a href="/notes/thermodynamic_relations.html">thermodynamic relations</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="/notes/applications.html">Applications</a>
+                        <ul class="sub-topics">
+                           <li><a href="/notes/power_engineering.html">Power Engineering</a></li>
+                           <li><a href="/notes/ic_engines.html">I.C. Engines</a></li>
+                           <li><a href="/notes/refrigeration_and_air-conditioning.html">Refrigeration and air-conditioning</a></li>
+                           <li><a href="/notes/turbomachinery.html">Turbomachinery</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <h3>MMIE</h3>
+                <ul>
+                    <li>
+                        <a href="/notes/engineering_materials.html">Engineering Materials</a>
+                        <ul class="sub-topics">
+                           <li><a href="/notes/structure_and_properties_of_engineering_materials.html">Structure and properties of engineering materials</a></li>
+                           <li><a href="/notes/phase_diagrams.html">phase diagrams</a></li>
+                           <li><a href="/notes/heat_treatment.html">heat treatment</a></li>
+                           <li><a href="/notes/stress-strain_diagrams.html">stress-strain diagrams for engineering materials</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="/notes/casting_forming_and_joining_processes.html">Casting, Forming and Joining Processes</a>
+                        <ul class="sub-topics">
+                           <li><a href="/notes/casting.html">Different types of castings, design of patterns, moulds and cores</a></li>
+                           <li><a href="/notes/solidification_and_cooling.html">solidification and cooling</a></li>
+                           <li><a href="/notes/riser_and_gating_design.html">riser and gating design</a></li>
+                           <li><a href="/notes/plastic_deformation_and_yield_criteria.html">Plastic deformation and yield criteria</a></li>
+                           <li><a href="/notes/hot_and_cold_working_processes.html">fundamentals of hot and cold working processes</a></li>
+                           <li><a href="/notes/load_estimation_for_bulk_and_sheet_metal_forming.html">load estimation for bulk and sheet metal forming processes</a></li>
+                           <li><a href="/notes/powder_metallurgy.html">principles of powder metallurgy</a></li>
+                           <li><a href="/notes/welding_brazing_soldering_and_adhesive_bonding.html">Principles of welding, brazing, soldering and adhesive bonding</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="/notes/machining_and_machine_tool_operations.html">Machining and Machine Tool Operations</a>
+                        <ul class="sub-topics">
+                           <li><a href="/notes/mechanics_of_machining.html">Mechanics of machining</a></li>
+                           <li><a href="/notes/basic_machine_tools.html">basic machine tools</a></li>
+                           <li><a href="/notes/cutting_tools.html">single and multi-point cutting tools, tool geometry and materials, tool life and wear</a></li>
+                           <li><a href="/notes/economics_of_machining.html">economics of machining</a></li>
+                           <li><a href="/notes/non-traditional_machining_processes.html">principles of non-traditional machining processes</a></li>
+                           <li><a href="/notes/work_holding_jigs_and_fixtures.html">principles of work holding, jigs and fixtures</a></li>
+                           <li><a href="/notes/abrasive_machining_processes.html">abrasive machining processes</a></li>
+                           <li><a href="/notes/nc_cnc_machines_and_cnc_programming.html">NC/CNC machines and CNC programming</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="/notes/metrology_and_inspection.html">Metrology and Inspection</a>
+                         <ul class="sub-topics">
+                           <li><a href="/notes/limits_fits_and_tolerances.html">Limits, fits and tolerances</a></li>
+                           <li><a href="/notes/linear_and_angular_measurements.html">linear and angular measurements</a></li>
+                           <li><a href="/notes/comparators.html">comparators</a></li>
+                           <li><a href="/notes/interferometry.html">interferometry</a></li>
+                           <li><a href="/notes/form_and_finish_measurement.html">form and finish measurement</a></li>
+                           <li><a href="/notes/alignment_and_testing_methods.html">alignment and testing methods</a></li>
+                           <li><a href="/notes/tolerance_analysis.html">tolerance analysis in manufacturing and assembly</a></li>
+                           <li><a href="/notes/coordinate-measuring_machine.html">concepts of coordinate-measuring machine (CMM)</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="/notes/computer_integrated_manufacturing.html">Computer Integrated Manufacturing</a>
+                        <ul class="sub-topics">
+                           <li><a href="/notes/cad_cam_integration.html">Basic concepts of CAD/CAM and their integration tools</a></li>
+                           <li><a href="/notes/additive_manufacturing.html">additive manufacturing</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="/notes/production_planning_and_control.html">Production Planning and Control</a>
+                        <ul class="sub-topics">
+                           <li><a href="/notes/forecasting_models.html">Forecasting models</a></li>
+                           <li><a href="/notes/aggregate_production_planning.html">aggregate production planning</a></li>
+                           <li><a href="/notes/scheduling.html">scheduling</a></li>
+                           <li><a href="/notes/materials_requirement_planning.html">materials requirement planning</a></li>
+                           <li><a href="/notes/lean_manufacturing.html">lean manufacturing</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="/notes/inventory_control.html">Inventory Control</a>
+                        <ul class="sub-topics">
+                           <li><a href="/notes/deterministic_models.html">Deterministic models</a></li>
+                           <li><a href="/notes/safety_stock_inventory_control_systems.html">safety stock inventory control systems</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="/notes/operations_research.html">Operations Research</a>
+                        <ul class="sub-topics">
+                           <li><a href="/notes/linear_programming.html">Linear programming</a></li>
+                           <li><a href="/notes/simplex_method.html">simplex method</a></li>
+                           <li><a href="/notes/transportation.html">transportation</a></li>
+                           <li><a href="/notes/assignment.html">assignment</a></li>
+                           <li><a href="/notes/network_flow_models.html">network flow models</a></li>
+                           <li><a href="/notes/simple_queuing_models.html">simple queuing models</a></li>
+                           <li><a href="/notes/pert_and_cpm.html">PERT and CPM</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <h3>Test</h3>
+                <ul>
+                    <li><a href="/tools/gate_calculator.html">GATE Calculator</a></li>
+                </ul>
+            </nav>
+        </aside>
+        <div class="main-content">
+            <header class="site-header">
+                <button class="sidebar-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <h1>GATE Mechanical Preparation Notes</h1>
+                <nav>
+                    <ul>
+                        <li><a href="/index.html">Home</a></li>
+                        <li><a href="/notes/thermodynamics.html">Thermodynamics</a></li>
+                        <li><a href="/notes/strength_of_materials.html">Strength of Materials</a></li>
+                        <li><a href="/notes/heat_transfer.html">Heat Transfer</a></li>
+                    </ul>
+                </nav>
+            </header>
